@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+        <meta http-equiv="Content-Security-Policy" content="
+            default-src *;             
+            script-src * data: https://ssl.gstatic.com 'unsafe-inline' 'unsafe-eval';
+            style-src 'self' 'unsafe-inline'; 
+            media-src *; 
+            img-src 'self' data: ;
+        ">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="css/index.css">
+        <title>eVote</title>
+    </head>
+    <body>
+        <div class="app">
+            <div class="choices">
+                <ul id="listChoices"></ul>
+            </div>
+        </div>
+        <script src="cordova.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="js/index.js"></script>
+        <script src="js/eVote.js"></script>
+
+        <script>
+            populateList("http://localhost:3000/", result =>  {
+                if(result.state==="error") alert("Errore dati server.");
+                else {
+                    //Add list elements
+                    choices=result.data.data.choices;
+            
+                    ulElement=document.getElementById("listChoices");
+                    choices.forEach(element => {
+                        let text=element.description;
+                        li = document.createElement("li");
+                        li.appendChild(document.createTextNode(text));
+                        ulElement.appendChild(li);    
+                    });
+                    console.log(result);
+                }
+            });
+        </script>
+    </body>
+</html>

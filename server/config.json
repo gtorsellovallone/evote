@@ -1,0 +1,9 @@
+{
+    "choices": [
+        {"id": 1, "description": "Scelta 1", "url": ""},
+        {"id": 2, "description": "Scelta 2", "url": ""},
+        {"id": 3, "description": "Scelta 3", "url": ""},
+        {"id": 3, "description": "Scelta 4", "url": ""},
+        {"id": 3, "description": "Scelta 5", "url": ""}
+    ]
+}
